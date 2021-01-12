@@ -1,3 +1,14 @@
+function getNonConsecutives(array) {
+   array.pop();
+   array.shift();
+   let newArr = array.reduce((acc, cur, ind, next) => {
+      let a = next.slice(ind + 2);
+      let arr = a.map((b) => cur + b);
+      acc.concat(arr);
+   }, []);
+
+   return Math.min(...newArr);
+}
 function solution(array) {
    array.pop();
    array.shift();
@@ -12,4 +23,4 @@ function solution(array) {
    }
 }
 
-console.log(solution([5, 3, 2, 4, 6, 3, 7]));
+console.log(getNonConsecutives([5, 3, 2, 4, 6, 3, 7]));
