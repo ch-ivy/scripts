@@ -1,3 +1,4 @@
+//Another sudoku solution below
 function sudoku2(grid) {
    const valid = (cb) => {
       for (let i = 0; i < 9; i++) {
@@ -26,4 +27,23 @@ function sudoku2(grid) {
             ]
       )
    );
+}
+
+//Another evaluation
+
+function sudoku(grid) {
+   for (let i = 0; i < 9; i++) {
+      let a = eval(grid[i].join("*")) == 362880;
+      let _b = grid.map((x) => x[i]);
+      let b = eval(_b.join("*")) == 362880;
+      let _c = grid[i].map((x, y) => {
+         let d = 3 * ((i / 3) | 0) + ((y / 3) | 0);
+         let e = 3 * (i % 3) + (y % 3);
+         return grid[d][e];
+      });
+      let c = eval(_c.join("*")) == 362880;
+      if (a && b && c) continue;
+      else return false;
+   }
+   return true;
 }
